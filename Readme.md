@@ -1,4 +1,4 @@
-# laravel-form-ajax-validation-ponto
+# laravel-form-ajax-validation
 
 ##Installation
 
