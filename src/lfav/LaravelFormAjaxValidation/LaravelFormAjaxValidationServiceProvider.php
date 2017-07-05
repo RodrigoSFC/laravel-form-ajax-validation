@@ -1,11 +1,11 @@
-<?php namespace PontoSistemas\LaravelFormAjaxValidationPonto;
+<?php namespace Lfav\LaravelFormAjaxValidation;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
-class LaravelFormAjaxValidationPontoServiceProvider extends ServiceProvider {
+class LaravelFormAjaxValidationServiceProvider extends ServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
