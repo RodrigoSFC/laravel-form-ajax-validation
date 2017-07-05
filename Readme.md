@@ -25,7 +25,7 @@ Open the file config/app.php
 ```php
 "providers": {
     ...
-    'Lfav\LaravelFormAjaxValidation\LaravelFormAjaxValidationServiceProvider',
+    Lfav\LaravelFormAjaxValidation\LaravelFormAjaxValidationServiceProvider::class,
     ...
 },
 ```
