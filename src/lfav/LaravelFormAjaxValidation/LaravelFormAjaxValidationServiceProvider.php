@@ -21,7 +21,7 @@ class LaravelFormAjaxValidationServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-        Route::post('validation',function(Request $request,$table){
+        Route::post('validation',function(Request $request){
             $class = $request->class;
             $class = str_replace('/','\\',$class);
             $my_request = new $class();
@@ -46,7 +46,6 @@ class LaravelFormAjaxValidationServiceProvider extends ServiceProvider {
 				}
 				$ii++;
 			}
-			$get_request = array_merge($get_request, $request->except($table));
             $validator = Validator::make($get_request,$my_request->rules(),$my_request->messages());
             $validator->setAttributeNames($my_request->attributes());
             if($request->ajax()){
@@ -65,7 +64,7 @@ class LaravelFormAjaxValidationServiceProvider extends ServiceProvider {
             }
         });
         $this->publishes([
-            __DIR__.'/views' => base_path('resources/views/vendor/lfavp'),
+            __DIR__.'/views' => base_path('resources/views/vendor/lfav'),
         ]);
 	}
 

@@ -84,6 +84,9 @@
                 if(data.success){
                     $.each(my_form.serializeArray(), function(i, field) {
 						var input = $('input[name="'+field.name+'"]');
+						if  (typeof(input.attr('id')) == "undefined"){
+							input = $('select[name="'+field.name+'"]');
+						}
 						if  (typeof(input.attr('id')) != "undefined"){
 							var father = input.parents('.div-error');
 							var label = $("label[for='label_"+input.attr('id')+"']");
@@ -118,6 +121,9 @@
 					
                     $.each(my_form.serializeArray(), function(i, field) {
 						var input = $('input[name="'+field.name+'"]');
+						if  (typeof(input.attr('id')) == "undefined"){
+							input = $('select[name="'+field.name+'"]');
+						}
 						if  (typeof(input.attr('id')) != "undefined"){
 							if ($.inArray(input.attr('id'), campos_error) === -1){
 								var father = input.parents('.div-error');
