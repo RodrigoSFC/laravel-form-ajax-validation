@@ -28,13 +28,16 @@ class LaravelFormAjaxValidationServiceProvider extends ServiceProvider {
             $get	=	$request->all();
 			$get_request = [];
 			$ii = 0;
+			$rules_request = [];
 			foreach($get as $key => $value){
 				if  (is_array($value)){
 					foreach ($value as $campos => $valores){
 						if  ($ii==0){
 							$get_request = array($campos => $valores);
+							$rules_request = array($campos);
 						} else {
 							$get_request = array_merge($get_request, array($campos => $valores));
+							$rules_request = array_merge($rules_request, array($campos));
 						}
 						$ii++;
 					}
@@ -46,7 +49,13 @@ class LaravelFormAjaxValidationServiceProvider extends ServiceProvider {
 				}
 				$ii++;
 			}
-            $validator = Validator::make($get_request,$my_request->rules(),$my_request->messages());
+			$rules_valida = $my_request->rules();
+			foreach ($rules_valida as $key => $value){
+				if  (!in_array($key,$rules_request)){
+					unset($rules_valida[$key]);
+				}
+			}
+            $validator = Validator::make($get_request,$rules_valida,$my_request->messages());
             $validator->setAttributeNames($my_request->attributes());
             if($request->ajax()){
                 if ($validator->fails())
